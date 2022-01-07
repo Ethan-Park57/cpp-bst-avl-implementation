@@ -11,8 +11,7 @@ struct KeyError {};
 
 /**
  * A special kind of node for an AVL tree, which adds the height as a data member, plus
- * other additional helper functions. You do NOT need to implement any functionality or
- * add additional data members or helper functions.
+ * other additional helper functions. 
  */
 template<typename Key, typename Value>
 class AVLNode : public Node<Key, Value> {
@@ -25,8 +24,7 @@ public:
     int getHeight() const;
     void setHeight(int height);
 
-    // Getters for parent, left, and right. These need to be redefined since they
-    // return pointers to AVLNodes - not plain Nodes. See the Node class in bst.h
+    // Getters for parent, left, and right. See the Node class in bst.h
     // for more information.
     virtual AVLNode<Key, Value>* getParent() const override;
     virtual AVLNode<Key, Value>* getLeft() const override;
@@ -38,7 +36,7 @@ protected:
 
 /*
   -------------------------------------------------
-  Begin implementations for the AVLNode class.
+  Begin AVLNode class.
   -------------------------------------------------
 */
 
@@ -99,7 +97,7 @@ AVLNode<Key, Value>* AVLNode<Key, Value>::getRight() const {
 
 /*
   -----------------------------------------------
-  End implementations for the AVLNode class.
+  End AVLNode class.
   -----------------------------------------------
 */
 
@@ -217,10 +215,6 @@ void AVLTree<Key, Value>::insertFix(AVLNode<Key, Value>* n, AVLNode<Key, Value>*
 
             updateHeight(g);
             updateHeight(p);
-            /*
-            updateHeight(n);
-            updateHeight(g);
-            updateHeight(p); */
         }
 
         // zig-zig, which needs left rotate to fix
@@ -229,10 +223,6 @@ void AVLTree<Key, Value>::insertFix(AVLNode<Key, Value>* n, AVLNode<Key, Value>*
             rotateLeft(g, p);
             updateHeight(g);
             updateHeight(p);
-            /*
-            updateHeight(n);
-            updateHeight(g);
-            updateHeight(p);*/
         }
 
         // zig-zag, which needs left, then right rotate to fix

@@ -184,7 +184,6 @@ int main(int argc, char* argv[]) {
         solution_exists = false;
         ;
     } else {
-        // TODO:  Call your backtracking search function here
         solution_exists = search(input, output, grid, 0, 0, it);
     }
 

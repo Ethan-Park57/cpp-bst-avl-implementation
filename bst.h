@@ -10,9 +10,7 @@
 /**
  * A templated class for a Node in a search tree.
  * The getters for parent/left/right are virtual so
- * that they can be overridden for future kinds of
- * search trees, such as Red Black trees, Splay trees,
- * and AVL trees.
+ * that they can be overridden.
  */
 template<typename Key, typename Value>
 class Node {
@@ -44,7 +42,7 @@ protected:
 
 /*
   -----------------------------------------
-  Begin implementations for the Node class.
+  Begin Node class.
   -----------------------------------------
 */
 
@@ -56,9 +54,7 @@ Node<Key, Value>::Node(const Key& key, const Value& value, Node<Key, Value>* par
         : item_(key, value), parent_(parent), left_(NULL), right_(NULL) {}
 
 /**
- * Destructor, which does not need to do anything since the pointers inside of a node
- * are only used as references to existing nodes. The nodes pointed to by parent/left/right
- * are freed within the deleteAll() helper method in the BinarySearchTree.
+ * Destructor
  */
 template<typename Key, typename Value>
 Node<Key, Value>::~Node() {}
@@ -104,7 +100,7 @@ Value& Node<Key, Value>::getValue() {
 }
 
 /**
- * An implementation of the virtual function for retreiving the parent.
+ * An implementation of the virtual function for retrieving the parent.
  */
 template<typename Key, typename Value>
 Node<Key, Value>* Node<Key, Value>::getParent() const {
@@ -112,7 +108,7 @@ Node<Key, Value>* Node<Key, Value>::getParent() const {
 }
 
 /**
- * An implementation of the virtual function for retreiving the left child.
+ * An implementation of the virtual function for retrieving the left child.
  */
 template<typename Key, typename Value>
 Node<Key, Value>* Node<Key, Value>::getLeft() const {
@@ -120,7 +116,7 @@ Node<Key, Value>* Node<Key, Value>::getLeft() const {
 }
 
 /**
- * An implementation of the virtual function for retreiving the right child.
+ * An implementation of the virtual function for retrieving the right child.
  */
 template<typename Key, typename Value>
 Node<Key, Value>* Node<Key, Value>::getRight() const {
@@ -161,7 +157,7 @@ void Node<Key, Value>::setValue(const Value& value) {
 
 /*
   ---------------------------------------
-  End implementations for the Node class.
+  End Node class.
   ---------------------------------------
 */
 
@@ -184,7 +180,7 @@ public:
     /**
      * An internal iterator class for traversing the contents of the BST.
      */
-    class iterator  // TODO
+    class iterator  
     {
     public:
         iterator();
@@ -210,13 +206,9 @@ public:
 
 protected:
     // Mandatory helper functions
-    Node<Key, Value>* internalFind(const Key& k) const;               // TODO
-    Node<Key, Value>* getSmallestNode() const;                        // TODO
-    static Node<Key, Value>* predecessor(Node<Key, Value>* current);  // TODO
-    // Note:  static means these functions don't have a "this" pointer
-    //        and instead just use the input argument.
-
-    // Provided helper functions
+    Node<Key, Value>* internalFind(const Key& k) const;               
+    Node<Key, Value>* getSmallestNode() const;                        
+    static Node<Key, Value>* predecessor(Node<Key, Value>* current);  
     virtual void printRoot(Node<Key, Value>* r) const;
     virtual void nodeSwap(Node<Key, Value>* n1, Node<Key, Value>* n2);
 
@@ -232,7 +224,7 @@ protected:
 
 /*
 --------------------------------------------------------------
-Begin implementations for the BinarySearchTree::iterator class.
+Begin BinarySearchTree::iterator class.
 ---------------------------------------------------------------
 */
 
@@ -290,10 +282,6 @@ bool BinarySearchTree<Key, Value>::iterator::operator!=(const BinarySearchTree<K
  */
 template<class Key, class Value>
 typename BinarySearchTree<Key, Value>::iterator& BinarySearchTree<Key, Value>::iterator::operator++() {
-    /*
-    current_ = successor(current_);
-    return *this;
-    */
 
     if (current_ != NULL) {
         if (current_->getRight() != NULL) {
@@ -372,7 +360,6 @@ typename BinarySearchTree<Key, Value>::iterator BinarySearchTree<Key, Value>::fi
 
 /**
  * An insert method to insert into a Binary Search Tree.
- * The tree will not remain balanced when inserting.
  */
 template<class Key, class Value>
 void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value>& keyValuePair) {
@@ -425,7 +412,6 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value>& key
 
 /**
  * A remove method to remove a specific key from a Binary Search Tree.
- * The tree may not remain balanced after removal.
  */
 template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::remove(const Key& key) {
@@ -749,12 +735,12 @@ void BinarySearchTree<Key, Value>::nodeSwap(Node<Key, Value>* n1, Node<Key, Valu
     }
 }
 
-// include print function (in its own file because it's fairly long)
+// print function (in its own file because it's fairly long)
 #include "print_bst.h"
 
 /*
 ---------------------------------------------------
-End implementations for the BinarySearchTree class.
+End BinarySearchTree class.
 ---------------------------------------------------
 */
 

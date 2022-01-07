@@ -14,18 +14,13 @@ struct Rectangle {
     int height;
 };
 
-// Typedefs for you input and output map. Start with
-// std::map but once the backtracking search algorithm is working
-// try to use your AVL-tree map implementation by changing these
-// typedef's
+// Typedefs for input and output map. 
 typedef AVLTree<int, Rectangle> InputMapType;
 typedef AVLTree<int, std::pair<int, int>> OutputMapType;
 
 // Allowed global variables: the dimensions of the grid
 int n;  // X-dim size
 int m;  // Y-dim size
-
-// No other global variables are allowed
 
 // A dummy operator << for Rectangles so the BST and AVL BST will
 // compile with their printRoot() implementations
@@ -81,7 +76,6 @@ bool isValid(vector<vector<bool>>& grid, Rectangle& r, int x, int y) {
     return true;
 }
 
-// TODO: Write your backtracking search function here
 bool search(
         InputMapType /* tiles */& t,
         OutputMapType /*solution */& s,
